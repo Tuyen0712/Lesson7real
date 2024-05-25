@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    string word = "abcd";
+    string str = "";
+    for (int i = 0; i < 4; i ++){
+        for (int j = 0; j < 4; j ++){
+            for (int k = 0; k < 4; k ++){
+                str +=word[i];
+                str +=word[j];
+                str += word[k];
+                cout<<str<<' ';
+                str = "";
+            }
+        }
+    }
+    return 0;
+}
