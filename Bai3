@@ -1,0 +1,41 @@
+//Cach1
+int solve(int x, int n, int s, int k){
+    if ( s == x) return 1;
+    int str = 0;
+    for (int i = k; i <= pow(x, 1.0/n); i ++){
+        if (s + pow (i, n) <= x){
+            str = str + solve(x,n,s+pow(i,n), i + 1);
+        }
+    }
+    return str;
+}
+int powerSum(int X, int N){
+    int s = 0;
+    int k = 1;
+    
+    return solve(X,N,s,k);
+}
+//Cach2
+void print(int x, int n, int* count, bool add, int k, int s){
+    int tmp = pow(k,n);
+    if (add){
+        s = s + tmp;
+        if (s >= x){
+            if (s == x) (*count)++; 
+            return;
+        }
+    }
+    
+    if (tmp >= x){
+        return;
+    }
+    
+    print(x,n,count,true, k +1, s);
+    print(x,n,count,false,k + 1, s);
+}
+int powerSum(int X, int N){
+    int count = 0;
+    print(X,N,&count, true, 1, 0);
+    print(X,N,&count, false, 1 , 0);
+    return count;
+}
